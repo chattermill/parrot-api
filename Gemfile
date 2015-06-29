@@ -13,6 +13,7 @@ gem 'active_model_serializers'
 gem 'rack-cors', require: 'rack/cors'
 
 gem "ember-cli-rails"
+gem "gibbon"
 
 group :production do
   gem 'rails_12factor'
@@ -30,4 +31,5 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'fuubar'
+  gem 'dotenv-rails'
 end
