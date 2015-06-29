@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-ParotApi::Application.load_tasks
+ParrotApi::Application.load_tasks
