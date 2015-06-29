@@ -1,5 +1,7 @@
 language: ruby
-script: bundle exec rspec
+script:
+  - bundle exec rake db:create db:migrate RAILS_ENV=test
+  - bundle exec rspec spec
 notifications:
   email: false
   slack:
@@ -14,5 +16,3 @@ deploy:
     repo: chattermill/parrot-api
 addons:
   postgresql: "9.3"
-before_script:
-  - cp config/database.yml.travis config/database.yml
