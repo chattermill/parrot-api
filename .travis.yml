@@ -15,4 +15,4 @@ deploy:
 addons:
   postgresql: "9.3"
 before_script:
-  - psql -c 'create database parrot-api_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
