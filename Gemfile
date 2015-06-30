@@ -11,8 +11,9 @@ gem 'pg'
 gem 'puma'
 gem 'active_model_serializers'
 gem 'rack-cors', require: 'rack/cors'
-gem "gibbon"
-gem "responders"
+gem 'gibbon'
+gem 'responders'
+gem 'devise'
 
 group :production do
   gem 'rails_12factor'
