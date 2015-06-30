@@ -17,7 +17,9 @@ development:
   host:     localhost
   encoding: unicode
   database: parrot-api_development
+  username: <%= `whoami`.chomp %>
   pool:     5
+  timeout: 5000
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -42,11 +44,15 @@ test:
   host:     localhost
   encoding: unicode
   database: parrot-api_test
+  username: <%= `whoami`.chomp %>
   pool:     5
+  timeout: 5000
 
 production:
   adapter:  postgresql
   host:     localhost
   encoding: unicode
   database: parrot-api_production
+  username: <%= `whoami`.chomp %>
   pool:     5
+  timeout: 5000
