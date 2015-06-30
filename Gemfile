@@ -12,6 +12,7 @@ gem 'puma'
 gem 'active_model_serializers'
 gem 'rack-cors', require: 'rack/cors'
 gem "gibbon"
+gem "responders"
 
 group :production do
   gem 'rails_12factor'
