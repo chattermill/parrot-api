@@ -50,9 +50,6 @@ GEM
     dotenv-rails (2.0.2)
       dotenv (= 2.0.2)
       railties (~> 4.0)
-    ember-cli-rails (0.3.2)
-      railties (>= 3.1, < 5)
-      sprockets (>= 2.0)
     erubis (2.7.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -175,7 +172,6 @@ DEPENDENCIES
   awesome_print
   byebug
   dotenv-rails
-  ember-cli-rails
   factory_girl_rails
   faker
   fuubar
