@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-  has_one :mailchimp_list
+  has_many :access_tokens, dependent: :destroy
+
+  validates :email, presence: true, uniqueness: true
+
+  def access_token
+    access_tokens.active.first
+  end
 end

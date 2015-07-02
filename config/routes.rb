@@ -1,8 +1,7 @@
 ParrotApi::Application.routes.draw do
-  devise_for :users
-  root 'application#index'
+  get 'sessions/create'
 
   namespace :api do
-    # resources :users
+    resources :sessions, only: [:create]
   end
 end

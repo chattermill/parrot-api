@@ -14,6 +14,7 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'gibbon'
 gem 'responders'
 gem 'devise'
+gem 'mailchimp3'
 
 group :production do
   gem 'rails_12factor'
