@@ -1,9 +1,14 @@
 class MailchimpList < ActiveRecord::Base
   belongs_to :user
   has_many :subscribers
+  after_create :generate_subscribers
 
   def create_subscribers
     mailchimp_subscribers.each { |subscriber_hash| create_subscriber(subscriber_hash) }
+  end
+
+  def generate_subscribers
+    CreateSubscribersJob.perform_later(self)
   end
 
   private
