@@ -42,7 +42,7 @@ GEM
     awesome_print (1.6.1)
     bcrypt (3.1.10)
     builder (3.2.2)
-    byebug (5.0.0)
+    byebug (4.0.5)
       columnize (= 0.9.0)
     celluloid (0.16.0)
       timers (~> 4.0.0)
@@ -101,6 +101,9 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.1.0)
+      byebug (~> 4.0)
+      pry (~> 0.10)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
     puma (2.11.3)
@@ -198,7 +201,6 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   awesome_print
-  byebug
   devise
   dotenv-rails
   factory_girl_rails
@@ -206,6 +208,7 @@ DEPENDENCIES
   fuubar
   gibbon
   pg
+  pry-byebug
   pry-rails
   puma
   rack-cors
@@ -216,6 +219,3 @@ DEPENDENCIES
   rspec-rails
   sidekiq
   spring
-
-BUNDLED WITH
-   1.10.5

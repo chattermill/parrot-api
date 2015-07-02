@@ -21,7 +21,6 @@ group :production do
 end
 
 group :development do
-  gem 'byebug'
   gem 'spring'
 end
 
@@ -29,6 +28,7 @@ group :development, :test do
   gem 'awesome_print'
   gem 'rspec-rails'
   gem 'pry-rails'
+  gem 'pry-byebug'
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'fuubar'
