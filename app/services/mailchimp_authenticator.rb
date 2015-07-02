@@ -9,6 +9,7 @@ class MailchimpAuthenticator
     {
       email: auth_data[:metadata][:login]["email"],
       login: auth_data[:metadata][:login]["login_name"],
+      account_name: auth_data[:metadata][:accountname],
       mailchimp_id: auth_data[:metadata][:user_id],
       mailchimp_auth_token: auth_data[:token_string],
       mailchimp_data_center: auth_data[:metadata][:dc]

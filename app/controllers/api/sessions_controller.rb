@@ -1,6 +1,4 @@
 class Api::SessionsController < Api::BaseController
-  respond_to :json
-
   skip_before_action :verify_authenticity_token
 
   def create
