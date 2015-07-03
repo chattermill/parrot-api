@@ -3,7 +3,7 @@ class Api::SessionsController < Api::BaseController
 
   def create
     if user
-      render json: user.access_tokens.first_or_create
+      render json: access_token.as_json
     else
       render json: { errors: user.errors },
         status: :unprocessable_entity
@@ -26,5 +26,12 @@ class Api::SessionsController < Api::BaseController
 
   def mailchimp_auth_code
     params.require(:code)
+  end
+
+  def access_token
+    token = user.access_tokens.first_or_create
+    token.slice(:access_token, :expires_at, :user_id).tap do |token_hash|
+      token_hash[:expires_in] = token.expires_in
+    end
   end
 end
