@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
     access_tokens.active.first
   end
 
-  def available_mailchimp_lists
+  def lists
     mailchimp_api.available_lists
   end
 
