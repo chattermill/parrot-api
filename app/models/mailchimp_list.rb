@@ -4,7 +4,9 @@ class MailchimpList < ActiveRecord::Base
   after_create :generate_subscribers
 
   def create_subscribers
-    mailchimp_subscribers.each { |subscriber_hash| create_subscriber(subscriber_hash) }
+    mailchimp_subscribers.each do |subscriber_hash| 
+      create_subscriber(subscriber_hash) if subscribed?(subscriber_hash) 
+    end
   end
 
   def generate_subscribers
@@ -13,19 +15,19 @@ class MailchimpList < ActiveRecord::Base
 
   private
 
-  def mailchimp_subscribers
-    gibbon.lists.members({id: mailchimp_id, opts: {start: 0, limit: 100}})["data"]
-  end
-
   def create_subscriber(subscriber_hash)
-    Subscriber.create(
-      email: subscriber_hash["email"],
-      subscription_date: subscriber_hash["timestamp_opt"],
-      mailchimp_list: self
+    subscribers.create(
+      email: subscriber_hash["email_address"],
+      subscription_date: subscriber_hash["timestamp_signup"],
+      name: subscriber_hash["merge_fields"].values.join(' '),
     )
   end
 
-  def gibbon
-    Gibbon::API
+  def mailchimp_subscribers
+    MailchimpAPI.new(user: user).subscribers(mailchimp_id)
+  end
+
+  def subscribed?(subscriber_hash)
+    subscriber_hash["status"] == "subscribed"
   end
 end
