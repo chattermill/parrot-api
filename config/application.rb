@@ -9,7 +9,7 @@ Bundler.require(:default, Rails.env)
 module ParrotApi
   class Application < Rails::Application
     # Use the responders controller from the responders gem
-    config.app_generators.scaffold_controller :responders_controller
+    # config.app_generators.scaffold_controller :responders_controller
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -22,11 +22,10 @@ module ParrotApi
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-    config.middleware.insert_before 0, "Rack::Cors" do
+     config.middleware.insert_before 0, "Rack::Cors", :debug => true, :logger => (-> { Rails.logger }) do
       allow do
-        origins '*'
-        resource '*', headers: :any,
-          methods: [:get, :post, :delete, :put, :options, :head]
+        origins 'localhost:4200', '127.0.0.1:4200', 'localhost:3000', '127.0.0.1:3000'
+        resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options]
       end
     end
   end

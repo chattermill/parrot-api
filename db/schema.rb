@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150701204814) do
+ActiveRecord::Schema.define(version: 20150705193930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,19 @@ ActiveRecord::Schema.define(version: 20150701204814) do
   end
 
   add_index "access_tokens", ["user_id"], name: "index_access_tokens_on_user_id", using: :btree
+
+  create_table "campaigns", force: :cascade do |t|
+    t.string   "company_name"
+    t.string   "from_name"
+    t.string   "background_color"
+    t.string   "foreground_color"
+    t.string   "reply_address"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "user_id"
+  end
+
+  add_index "campaigns", ["user_id"], name: "index_campaigns_on_user_id", using: :btree
 
   create_table "mailchimp_lists", force: :cascade do |t|
     t.string   "mailchimp_id"
@@ -57,6 +70,7 @@ ActiveRecord::Schema.define(version: 20150701204814) do
     t.string   "mailchimp_data_center"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.string   "selectedListId"
   end
 
   add_foreign_key "access_tokens", "users"

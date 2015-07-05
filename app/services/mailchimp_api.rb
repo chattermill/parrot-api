@@ -9,7 +9,7 @@ class MailchimpAPI
 
   def available_lists
     client.lists.get["lists"].map do |list_hash|
-      { mailchimp_id: list_hash["id"], name: list_hash["name"]}
+      { id: list_hash["id"], name: list_hash["name"]}
     end
   end
 
