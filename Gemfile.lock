@@ -67,15 +67,9 @@ GEM
     fuubar (2.0.0)
       rspec (~> 3.0)
       ruby-progressbar (~> 1.4)
-    gibbon (1.1.6)
-      httparty
-      multi_json (>= 1.9.0)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     hitimes (1.2.2)
-    httparty (0.13.5)
-      json (~> 1.8)
-      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     json (1.8.3)
     jsonapi-resources (0.4.2)
@@ -181,6 +175,7 @@ GEM
       rspec-support (~> 3.3.0)
     rspec-support (3.3.0)
     ruby-progressbar (1.7.5)
+    send_with_us (1.10.2)
     sidekiq (3.4.1)
       celluloid (~> 0.16.0)
       connection_pool (>= 2.1.1)
@@ -211,7 +206,6 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fuubar
-  gibbon
   jsonapi-resources
   mailchimp3
   pg
@@ -224,5 +218,6 @@ DEPENDENCIES
   rails_12factor
   responders
   rspec-rails
+  send_with_us
   sidekiq
   spring
