@@ -13,6 +13,10 @@ class MailchimpAPI
     end
   end
 
+  def subscribers(list_id)
+    client.lists[list_id].members.get(count: 5000)["members"]
+  end
+
   private
   
   attr_reader :client
