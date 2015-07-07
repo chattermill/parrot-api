@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706221818) do
+ActiveRecord::Schema.define(version: 20150707133214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,27 @@ ActiveRecord::Schema.define(version: 20150706221818) do
 
   add_index "subscribers", ["mailchimp_list_id"], name: "index_subscribers_on_mailchimp_list_id", using: :btree
 
+  create_table "survey_responses", force: :cascade do |t|
+    t.integer  "score"
+    t.text     "body"
+    t.integer  "survey_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "survey_responses", ["survey_id"], name: "index_survey_responses_on_survey_id", using: :btree
+
+  create_table "surveys", force: :cascade do |t|
+    t.integer  "subscriber_id"
+    t.integer  "campaign_id"
+    t.string   "token"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "surveys", ["campaign_id"], name: "index_surveys_on_campaign_id", using: :btree
+  add_index "surveys", ["subscriber_id"], name: "index_surveys_on_subscriber_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -79,4 +100,7 @@ ActiveRecord::Schema.define(version: 20150706221818) do
   add_foreign_key "access_tokens", "users"
   add_foreign_key "mailchimp_lists", "users"
   add_foreign_key "subscribers", "mailchimp_lists"
+  add_foreign_key "survey_responses", "surveys"
+  add_foreign_key "surveys", "campaigns"
+  add_foreign_key "surveys", "subscribers"
 end
