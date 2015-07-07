@@ -16,7 +16,7 @@ class Campaign < ActiveRecord::Base
       survey = Survey.create(token: SecureRandom.hex,
                     subscriber: subscriber,
                     campaign: self)
-      mailer.send_emai(survey)
+      mailer.send_email(survey)
     end
   end
 
