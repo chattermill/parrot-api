@@ -20,8 +20,6 @@ class Campaign < ActiveRecord::Base
     end
   end
 
-
-
   private
 
   def mailer
