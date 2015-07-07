@@ -8,7 +8,10 @@ class NpsMailer
 
   def survey_subscribers
     campaign.subscribers.each do |subscriber|
-      send_email(subscriber)
+      survey = Survey.create(token: SecureRandom.hex,
+                    subscriber: subscriber,
+                    campaign: campaign)
+      send_email(survey)
     end
   end
 
@@ -16,17 +19,18 @@ class NpsMailer
 
   attr_reader :client, :campaign
 
-  def send_email(subscriber)
+  def send_email(survey)
     client.send_email(
       NPS_TEMPLATE_ID,
-      { name: subscriber.name, address: subscriber.email },
+      { name: survey.subscriber.name, address: survey.subscriber.email },
       data: {
-        first_name: subscriber.name,
+        first_name: survey.subscriber.name,
         company_name: campaign.company_name,
         company_url: campaign.company_url,
         background_color: campaign.background_color, 
         foreground_color: campaign.foreground_color,
-        image_url: campaign.image_url
+        image_url: campaign.image_url,
+        token: survey.token
       },
       from: {
         name: campaign.from_name,
