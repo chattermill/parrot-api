@@ -1,10 +1,15 @@
 class SurveyResponse < ActiveRecord::Base
   belongs_to :survey
+  delegate :campaign, :subscriber, to: :survey
+  validates_presence_of :score, :body, :token
 
-  def self.create_from_token params_hash
-    survey = Survey.find_by(token: params_hash[:token])
-    SurveyResponse.create(body: params_hash[:body],
-                          score: params_hash[:score],
-                          survey: survey)
+  def token=(token)
+    self.survey = Survey.find_by_token(token)
+  end
+
+  private
+  
+  def token
+    survey.token
   end
 end
