@@ -10,6 +10,6 @@ class SurveyResponse < ActiveRecord::Base
   private
   
   def token
-    survey.token
+    survey.token if survey.present?
   end
 end
