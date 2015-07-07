@@ -3,6 +3,7 @@ class Campaign < ActiveRecord::Base
   delegate :mailchimp_list, to: :user
   delegate :subscribers, to: :mailchimp_list
   after_create :send_survey_emails
+  has_many :surveys
 
   validates_presence_of :company_name, :from_name, :background_color, :foreground_color, :reply_address, :image_url
 
@@ -11,12 +12,19 @@ class Campaign < ActiveRecord::Base
   end
 
   def survey_subscribers
-    mailer.survey_subscribers
+    subscribers.each do |subscriber|
+      survey = Survey.create(token: SecureRandom.hex,
+                    subscriber: subscriber,
+                    campaign: self)
+      mailer.send_emai(survey)
+    end
   end
+
+
 
   private
 
   def mailer
-    NpsMailer.new(campaign: self)
+    @mailer ||= NpsMailer.new(campaign: self)
   end
 end
