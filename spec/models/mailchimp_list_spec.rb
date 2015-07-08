@@ -2,16 +2,18 @@ require 'rails_helper'
 
 RSpec.describe MailchimpList, type: :model do
   context "Creating subscribers" do
-    let(:list) { FactoryGirl.build(:mailchimp_list) }
-    
-    it "#create_subscribers" do
-      allow(list).to receive(:mailchimp_subscribers).and_return([subscriber_hash])
-      
-      list.create_subscribers
+    before do
+      MailchimpList.skip_callback(:create, :after, :generate_subscribers)
+      @list = create(:mailchimp_list)
+      allow(@list).to receive(:mailchimp_subscribers).and_return([subscriber_hash])
+    end
 
-      expect(list.subscribers.count).to eq 1
-      expect(list.subscribers.last.email).to eq "blabla@example.com"
-      expect(list.subscribers.last.subscription_date).to eq DateTime.parse("2015-05-12 11:18:25")
+    it "#create_subscribers" do
+      @list.create_subscribers
+
+      expect(@list.subscribers.count).to eq 1
+      expect(@list.subscribers.last.email).to eq "blabla@example.com"
+      expect(@list.subscribers.last.subscription_date).to eq DateTime.parse("2015-05-12 11:18:25")
     end
   end
   
