@@ -5,32 +5,50 @@ class NpsCalculator
   end
 
   def percentage_promoters
+    return "There were no responses to this campaign" if no_responses?
     (promoter_scores.count.to_f / raw_scores.count).round(2)
   end
 
   def percentage_detractors
+    return "There were no responses to this campaign" if no_responses?
     (detractor_scores.count.to_f / raw_scores.count).round(2)
   end
 
   def percentage_passives
+    return "There were no responses to this campaign" if no_responses?
     (passive_scores.count.to_f / raw_scores.count).round(2)
   end
 
   def absolute_promoters 
+    return "There were no responses to this campaign" if no_responses?
     promoter_scores.count
   end
 
   def absolute_detractors 
+    return "There were no responses to this campaign" if no_responses?
     detractor_scores.count
   end
 
-  def absolute_passives 
+  def absolute_passives
+    return "There were no responses to this campaign" if no_responses?
     passive_scores.count
   end
 
   def score
     return "There were no responses to this campaign" if no_responses?
     (percentage_promoters - percentage_detractors).round(2)
+  end
+
+  def number_of_surveys_sent
+    campaign.surveys.count
+  end
+
+  def number_of_responses
+    campaign.survey_responses.count
+  end
+
+  def response_rate
+    number_of_responses/number_of_surveys_sent.to_f
   end
 
   private
