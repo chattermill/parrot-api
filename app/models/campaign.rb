@@ -25,6 +25,18 @@ class Campaign < ActiveRecord::Base
     end
   end
 
+  def number_of_surveys_sent
+    self.surveys.count
+  end
+
+  def number_of_responses
+    self.survey_responses.count
+  end
+
+  def response_rate
+    number_of_responses/number_of_surveys_sent.to_f
+  end
+
   private
 
   def mailer
