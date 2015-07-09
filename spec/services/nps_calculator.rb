@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe NpsCalculator, type: :model do
   let(:campaign) { double }
-  let(:empty_campaign) { double }
   let(:calculator) { NpsCalculator.new(campaign: campaign) }
-  let(:empty_calculator) { NpsCalculator.new(campaign: empty_campaign) }
 
   context "calculating the NPS metrics from responses" do
     before do
@@ -42,19 +40,15 @@ RSpec.describe NpsCalculator, type: :model do
 
   context "calculating the metrics when there are no responses" do
     before do
-      allow(empty_campaign).to receive(:survey_responses).and_return([])
+      allow(campaign).to receive(:survey_responses).and_return([])
     end
 
     it 'notes when there are no responses' do 
-      expect(empty_calculator.score).to eq 0
+      expect(calculator.score).to eq 0
     end
   end
 
   def responses
     [double(score: 9), double(score: 10), double(score: 5), double(score: 1), double(score: 0), double(score: 7)]
-  end
-
-  def surveys
-    double(size: 8)
   end
 end
