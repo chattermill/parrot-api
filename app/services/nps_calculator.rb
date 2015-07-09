@@ -5,24 +5,48 @@ class NpsCalculator
   end
 
   def percentage_promoters
-    (promoter_scores.count.to_f / raw_scores.count).round(2)
+    return 0 if no_responses?
+    (number_of_promoters.to_f / raw_scores.count).round(2)
   end
 
   def percentage_detractors
-    (detractor_scores.count.to_f / raw_scores.count).round(2)
+    return 0 if no_responses?
+    (number_of_detractors.to_f / raw_scores.count).round(2)
   end
 
   def percentage_passives
-    (passive_scores.count.to_f / raw_scores.count).round(2)
+    return 0 if no_responses?
+    (number_of_passives.to_f / raw_scores.count).round(2)
+  end
+
+  def number_of_promoters 
+    return 0 if no_responses?
+    promoter_scores.count
+  end
+
+  def number_of_detractors 
+    return 0 if no_responses?
+    detractor_scores.count
+  end
+
+  def number_of_passives
+    return 0 if no_responses?
+    passive_scores.count
   end
 
   def score
+    return 0 if no_responses?
     (percentage_promoters - percentage_detractors).round(2)
   end
+
 
   private
 
   attr_reader :campaign
+
+  def no_responses?
+    campaign.survey_responses.empty?
+  end
   
   def raw_scores
     campaign.survey_responses.map(&:score)
