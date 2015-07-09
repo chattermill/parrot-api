@@ -5,7 +5,14 @@ module Api
       :background_color, 
       :foreground_color, 
       :reply_address,
-      :image_url
+      :image_url,
+      :from_address,
+      :company_url,
+      :nps_score,
+      :percentage_promoters,
+      :percentage_detractors,
+      :percentage_passives,
+      :created_at
 
     has_one :user
 
