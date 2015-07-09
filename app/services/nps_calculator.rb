@@ -6,17 +6,17 @@ class NpsCalculator
 
   def percentage_promoters
     return 0 if no_responses?
-    (promoter_scores.count.to_f / raw_scores.count).round(2)
+    (number_of_promoters.to_f / raw_scores.count).round(2)
   end
 
   def percentage_detractors
     return 0 if no_responses?
-    (detractor_scores.count.to_f / raw_scores.count).round(2)
+    (number_of_detractors.to_f / raw_scores.count).round(2)
   end
 
   def percentage_passives
     return 0 if no_responses?
-    (passive_scores.count.to_f / raw_scores.count).round(2)
+    (number_of_passives.to_f / raw_scores.count).round(2)
   end
 
   def number_of_promoters 

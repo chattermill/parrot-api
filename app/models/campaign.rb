@@ -26,11 +26,11 @@ class Campaign < ActiveRecord::Base
   end
 
   def number_of_surveys_sent
-    self.surveys.count
+    surveys.count
   end
 
   def number_of_responses
-    self.survey_responses.count
+    survey_responses.count
   end
 
   def response_rate
