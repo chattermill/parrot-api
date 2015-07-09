@@ -34,7 +34,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def response_rate
-    number_of_responses/number_of_surveys_sent.to_f
+    number_of_responses / number_of_surveys_sent.to_f
   end
 
   private

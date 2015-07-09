@@ -28,6 +28,6 @@ RSpec.describe Campaign, type: :model do
   end
 
   def surveys
-    Array.new(8) { double }
+    double(count: 8)
   end
 end
