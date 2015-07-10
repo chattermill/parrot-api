@@ -8,6 +8,8 @@ Bundler.require(:default, Rails.env)
 
 module ParrotApi
   class Application < Rails::Application
+     config.active_job.queue_adapter = :sidekiq
+
      config.middleware.insert_before 0, "Rack::Cors", :debug => true, :logger => (-> { Rails.logger }) do
       allow do
         origins 'localhost:4200', '127.0.0.1:4200', 'localhost:3000', '127.0.0.1:3000'
