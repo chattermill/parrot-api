@@ -16,7 +16,7 @@ gem 'responders'
 gem 'mailchimp3'
 gem 'sidekiq'
 gem 'send_with_us'
-
+gem "algoliasearch-rails"
 
 group :production do
   gem 'rails_12factor'

@@ -4,7 +4,8 @@ module Api
       :nps_score,
       :percentage_promoters,
       :percentage_detractors,
-      :percentage_passives
+      :percentage_passives,
+      :last_responses
     ]
 
     attributes :company_name, 
@@ -19,7 +20,8 @@ module Api
       :nps_score,
       :percentage_promoters,
       :percentage_detractors,
-      :percentage_passives
+      :percentage_passives,
+      :last_responses
 
     has_one :user
     

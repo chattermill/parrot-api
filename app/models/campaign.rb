@@ -37,6 +37,15 @@ class Campaign < ActiveRecord::Base
     number_of_responses / number_of_surveys_sent.to_f
   end
 
+  def last_responses
+    survey_responses.last(5).map do |response|
+      {
+        body: response.body,
+        score: response.score
+      }
+    end
+  end
+
   private
 
   def mailer
