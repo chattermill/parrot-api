@@ -5,6 +5,12 @@ module Api
       :percentage_promoters,
       :percentage_detractors,
       :percentage_passives,
+      :response_rate,
+      :number_of_surveys_sent,
+      :number_of_responses,
+      :number_of_promoters,
+      :number_of_detractors,
+      :number_of_passives,
       :last_responses
     ]
 
@@ -21,6 +27,12 @@ module Api
       :percentage_promoters,
       :percentage_detractors,
       :percentage_passives,
+      :number_of_promoters,
+      :number_of_detractors,
+      :number_of_passives,
+      :response_rate,
+      :number_of_surveys_sent,
+      :number_of_responses,
       :last_responses
 
     has_one :user

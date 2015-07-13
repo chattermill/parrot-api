@@ -9,7 +9,12 @@ class Campaign < ActiveRecord::Base
 
   delegate :mailchimp_list, to: :user
   delegate :subscribers, to: :mailchimp_list
-  delegate :percentage_promoters, :percentage_detractors, :percentage_passives, to: :nps_calculator
+  delegate :percentage_promoters, 
+           :percentage_detractors, 
+           :percentage_passives, 
+           :number_of_promoters, 
+           :number_of_detractors, 
+           :number_of_passives, to: :nps_calculator
   delegate :score, to: :nps_calculator, prefix: :nps
 
   def send_survey_emails
@@ -26,11 +31,11 @@ class Campaign < ActiveRecord::Base
   end
 
   def number_of_surveys_sent
-    surveys.count
+    @number_of_surveys_sent ||= surveys.count
   end
 
   def number_of_responses
-    survey_responses.count
+     @number_of_responses ||= survey_responses.count
   end
 
   def response_rate
