@@ -18,6 +18,7 @@ gem 'mailchimp3'
 gem 'sidekiq'
 gem 'send_with_us'
 gem "algoliasearch-rails"
+gem 'sinatra', :require => nil
 
 group :production do
   gem 'rails_12factor'
@@ -25,7 +26,6 @@ end
 
 group :development do
   gem 'spring'
-  gem 'sinatra', :require => nil
 end
 
 group :development, :test do
