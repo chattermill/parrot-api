@@ -237,6 +237,3 @@ DEPENDENCIES
   sidekiq
   sinatra
   spring
-
-BUNDLED WITH
-   1.10.5
