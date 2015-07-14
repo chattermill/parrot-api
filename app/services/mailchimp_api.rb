@@ -1,5 +1,4 @@
 class MailchimpAPI
- 
   def initialize(user:)
     @client = MailChimp3.new(
                 oauth_access_token: user.mailchimp_auth_token,
@@ -9,7 +8,11 @@ class MailchimpAPI
 
   def available_lists
     client.lists.get["lists"].map do |list_hash|
-      { id: list_hash["id"], name: list_hash["name"]}
+      { 
+        id: list_hash["id"], 
+        name: list_hash["name"],
+        list_length: list_hash["stats"]["member_count"]
+      }
     end
   end
 
