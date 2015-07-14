@@ -2,9 +2,6 @@ class MailchimpAuthenticator
   attr_reader :auth_data
 
   def initialize(auth_code:)
-    puts "*****************"
-    puts auth_code
-    puts "*****************"
     @auth_code = auth_code
   end
 
