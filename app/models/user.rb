@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 
     unless MailchimpList.find_by_mailchimp_id(selected_list_id)
       MailchimpList.create(
-        mailchimp_id: list[:id], 
+        mailchimp_id: list[:id],
         name: list[:name],
         list_length: list[:list_length],
         user: self)
