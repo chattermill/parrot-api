@@ -32,8 +32,4 @@ class User < ActiveRecord::Base
         user: self)
     end
   end
-
-  def lists=(lists)
-    # Should be handled by resource eventually
-  end
 end
