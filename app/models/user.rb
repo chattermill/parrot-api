@@ -25,11 +25,11 @@ class User < ActiveRecord::Base
     list = lists.find { |list| list[:id] == selected_list_id }
 
     unless MailchimpList.find_by_mailchimp_id(selected_list_id)
-      MailchimpList.create(mailchimp_id: list[:id], name: list[:name], user: self)
+      MailchimpList.create(
+        mailchimp_id: list[:id],
+        name: list[:name],
+        list_length: list[:list_length],
+        user: self)
     end
-  end
-
-  def lists=(lists)
-    # Should be handled by resource eventually
   end
 end

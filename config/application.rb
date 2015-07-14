@@ -12,7 +12,7 @@ module ParrotApi
 
      config.middleware.insert_before 0, "Rack::Cors", :debug => true, :logger => (-> { Rails.logger }) do
       allow do
-        origins 'localhost:4200', '127.0.0.1:4200', 'localhost:3000', '127.0.0.1:3000', 'http://beta.chattermill.io', 'https://beta.chattermill.io'
+        origins 'localhost:4200', '127.0.0.1:4200', 'localhost:3000', '127.0.0.1:3000', 'http://beta.chattermill.io', 'https://beta.chattermill.io', 'http://cm-parrot.divshot.io'
         resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options]
       end
     end

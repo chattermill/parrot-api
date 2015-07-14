@@ -24,7 +24,7 @@ class MailchimpList < ActiveRecord::Base
   end
 
   def mailchimp_subscribers
-    MailchimpAPI.new(user: user).subscribers(mailchimp_id)
+    MailchimpAPI.new(user: user).subscribers(list: self)
   end
 
   def subscribed?(subscriber_hash)

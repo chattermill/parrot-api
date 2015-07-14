@@ -2,6 +2,9 @@ class MailchimpAuthenticator
   attr_reader :auth_data
 
   def initialize(auth_code:)
+    puts "*****************"
+    puts auth_code
+    puts "*****************"
     @auth_code = auth_code
   end
 
@@ -23,7 +26,7 @@ class MailchimpAuthenticator
   def auth_data
     @auth_data ||= MailChimp3.oauth.complete_auth(
       auth_code,
-      redirect_uri: 'http://127.0.0.1:4200'
+      redirect_uri: ENV['MAILCHIMP_REDIRECT_URL']
     )
   end
 end
